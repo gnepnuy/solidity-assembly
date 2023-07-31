@@ -11,3 +11,23 @@ solidity-assembly
   pop//丢弃栈顶数据
   
   sload(0x0)//读取0x0位置的数据
+
+  mstore(32, 0x0)// 把0x0写入32开始的内存位置中,mstore指令写入32个字节到内存中
+
+  keccak256(0,64)//计算0~64内存位置上数据的hash值
+
+计算mapping的存储位置:
+
+  keccak256(bytes32(0x2121)+bytes32(0))//bytes32(0x2121)为mapping的key,bytes32(0)为mapping的插槽位置,slot0
+
+计算数组里第一个元素的存储位置
+
+  keccak256(bytes32(0))//bytes32(0)为数组的插槽位置,slot0
+  第二元素为keccak256(bytes32(0))+1
+
+bytes数组使用体会
+
+  bytes.push()//可以在数组末尾添加数据,同时也会增加bytes数组的长度
+  bytes[0]//返回的是两个字符,如果index超过了bytes数组的长度会报错
+  
+    
